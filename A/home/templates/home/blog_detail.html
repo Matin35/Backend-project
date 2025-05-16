@@ -50,6 +50,22 @@
 								<p>{{ post.bodySection4 }}</p>
 
 							</div>
+                            {% if request.user.is_authenticated %}
+                                <div class="row">
+                                    <div class="col-6 col-md-6 order-1 order-md-2 text-left d-flex justify-content-center">
+                                        <a href="{% url 'home:blog_edit' post.slug %}">
+                                            <button type="submit" class="btn"><i class="font-icon icon-edit-2"></i> تغییر
+                                            پست
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-md-6 order-1 order-md-2 text-left d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-danger"><i
+                                            class="font-icon icon-delete"></i> حذف پست
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endif %}
 							<footer class="footer-post">
 							    <a class="footer-post__share" href="http://facebook.com/"><i class="font-icon icon-facebook"></i><span>فیس بوک</span></a>
 								<a class="footer-post__share" href="http://twitter.com/"><i class="font-icon icon-twitter"></i><span>توییتر</span></a>
@@ -122,11 +138,14 @@
 
 							<!-- Comment form -->
 							<ul class="social-auth">
-							    <li class="social-auth__item">وارد شوید با:</li>
-							    <li class="social-auth__item"><a class="social-auth__link" href="#"><i class="font-icon icon-facebook"></i></a></li>
-								<li class="social-auth__item"><a class="social-auth__link" href="#"><i class="font-icon icon-twitter"></i></a></li>
-								<li class="social-auth__item"><a class="social-auth__link" href="#"><i class="font-icon icon-dribbble"></i></a></li>
-								<li class="social-auth__item"><a class="social-auth__link" href="#"><i class="font-icon icon-behance"></i></a></li>
+							    {% if request.user.is_authenticated %}
+
+                                    <li class="social-auth__item">خارج شوید با:</li>
+							        <li class="social-auth__item"><a class="social-auth__link" href="{% url 'account:logout' %}"><i class="font-icon icon-log-out"></i></a></li>
+                                {% else %}
+                                    <li class="social-auth__item">وارد شوید با:</li>
+							        <li class="social-auth__item"><a class="social-auth__link" href="{% url 'account:register' %}"><i class="font-icon icon-log-in"></i></a></li>
+                                {% endif %}
 							</ul>
 							<form class="comment-form">
 							    <textarea id="commentForm" class="textarea form-control" required="required" placeholder="نوشتن دیدگاه ..." rows="1"></textarea>

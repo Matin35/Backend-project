@@ -1,0 +1,23 @@
+{% if messages %}
+
+    {% for msg in messages %}
+        <p class="alert alert-{{ msg.tags }}" id="myAlert">{{ msg }}</p>
+    {% endfor %}
+
+{% endif %}
+
+{% block js %}
+
+    {% if messages %}
+        <script>
+
+            const myAlert = document.getElementById('myAlert')
+
+            setTimeout(()=>{
+                myAlert.style.display = 'none'
+            },5000)
+
+        </script>
+    {% endif %}
+
+{% endblock %}

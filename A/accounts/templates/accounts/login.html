@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <p class="alert alert-{{ msg.tags }}">{{ msg }}</p>
+    <div class="box box-content">
+        <div class="pb-2">
+            <div class="row">
+               <div class="col-8 col-md-8 mx-auto">
+                   <h2 class="title title--h3"> فرم Log In</h2>
+                    <form action="" method="post">
+                        {{ form.as_p }}
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12 col-md-12 order-1 order-md-2 text-left d-flex justify-content-center">
+                                <button type="submit" class="btn"> Log In <i class="font-icon icon-log-in"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                   <h3 class="title title--h4">حساب کاربری ندارید : <a href="{% url 'account:register' %}">ایجاد کنید</a></h3>
+               </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">© 1403 متین طاهری</footer>
+{% endblock %}
